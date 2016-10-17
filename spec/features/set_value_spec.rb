@@ -1,13 +1,11 @@
 require 'spec_helper'
 
-feature 'setting the key and value' do
+feature 'setting and retrieving the key and value' do
 
-  scenario 'entering a value into form' do
-    visit('/')
-    fill_in('somekey', with: 'Dog')
-    fill_in('somevalue', with: 'Labrador')
-    click_button('Save')
-    expect(page).to have_content('Please visit http://localhost:4000/get?key=Dog')
+  scenario 'enter key and value into query string' do
+    visit('/set?Dog=Labrador')
+    visit('/get?key=Dog')
+    expect(page).to have_content('Labrador')
   end
 
 end
